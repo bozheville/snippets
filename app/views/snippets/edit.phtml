@@ -1,0 +1,20 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Add Snippet</h3>
+
+        <form action="/snippets/edit/<?=$snippet->num;?>" method="post">
+            <div class="inputs">
+                <h4>Title</h4>
+                <input type="text" name="title" class="form-control" placeholder="Snippet title" value="<?=$snippet->title;?>">
+
+                <h4>Text</h4>
+                <textarea name="body" class="form-control" placeholder="Snippet body"><?=$snippet->body;?></textarea>
+
+                <h4>Tags</h4>
+                <input type="text" name="tags" class="form-control" placeholder="Set a few tags" value="<?=implode(', ', $snippet->tags);?>">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </form>
+    </div>
+</div>

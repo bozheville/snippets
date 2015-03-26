@@ -1,0 +1,24 @@
+<form action="/user/auth" method="post" class="form-horizontal well" ng-controller="user">
+    <input type="hidden" name="back_url" value="<?=$back_url;?>"/>
+        <legend>Login / Register by filling just these two fields</legend>
+        <div class="form-group">
+            <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+            <div class="col-lg-10">
+                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Type your email" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPass" class="col-lg-2 control-label">Password</label>
+            <div class="col-lg-10">
+                <input type="{{passHint ? 'text' : 'password'}}" name="password" id="inputPass" class="form-control" placeholder="Type your password" required>
+                <input type="checkbox" ng-model="passHint" id="passHint"/>
+                <label for="passHint">Show password</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary">Auth</button>
+            </div>
+        </div>
+</form>
+

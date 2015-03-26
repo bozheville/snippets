@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="list-group">
+            <?php foreach($snippets as $snippet):?>
+                <div class="list-group-item">
+                    <div class="row-action-primary">
+                        <i class="mdi-navigation-chevron-right"></i>
+                    </div>
+                    <div class="row-content">
+                        <a href="/snippets/<?= $snippet->num; ?>">
+                            <h4 class="list-group-item-heading"><?=$snippet->title;?></h4>
+                            <p class="list-group-item-text"><?=$snippet->body;?></p>
+                        </a>
+                    </div>
+                </div>
+            <?php endforeach;?>
+        </div>
+    </div>
+</div>
+
+<?php if(isset($pagination)):?>
+<div class="row">
+    <div class="col-md-12">
+        <ul class="pagination">
+            <li class="<?php if(!$pagination['prev']):?>disabled<?php endif;?>"><a href="/<?=$pagination['prev'];?>">«</a></li>
+            <?php foreach($pagination['pages'] as $page):?>
+                <li class="<?php if($page == $pagination['current']):?>active<?php endif;?>"><a href="/<?=$page;?>"><?=$page;?></a></li>
+            <?php endforeach;?>
+            <li class="<?php if(!$pagination['next']):?>disabled<?php endif;?>"><a href="/<?=$pagination['next'];?>">»</a></li>
+        </ul>
+    </div>
+</div>
+<?php endif;?>

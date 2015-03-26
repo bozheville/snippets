@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-fab btn-material-grey-200" id="openEditor" href="/snippets/edit/<?=$snippet->num;?>">
+            <i class="mdi-editor-mode-edit"></i><div class="ripple-wrapper"></div>
+        </a>
+        <h1><?=$snippet->title;?></h1>
+        <div><pre><?=$snippet->body;?></pre></div>
+        <div>
+            <?foreach($snippet->tags as $tag_lnk => $tag):?>
+                <a href="/snippets/tag/<?= $tag_lnk; ?>"><?=$tag;?></a>
+            <?endforeach;?>
+        </div>
+    </div>
+</div>
