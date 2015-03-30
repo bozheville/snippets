@@ -11,6 +11,7 @@ class Snippet extends ModelBase {
     public $body = '';
     public $num = 0;
     public $tags = [];
+    public $demo = '';
     public $created = [];
     public $updated = [];
 
@@ -27,7 +28,7 @@ class Snippet extends ModelBase {
         $tags = preg_split('#\s*,\s*#', trim($this->tags));
         $this->tags = [];
         foreach($tags as $tag){
-            $this->tags[preg_replace('#[^a-z]#', '_', strtolower($tag))] = trim($tag);
+            $this->tags[preg_replace('#[^a-z0-9]#i', '_', strtolower($tag))] = trim($tag);
         }
     }
 

@@ -25,6 +25,7 @@ class SnippetsController extends ControllerBase {
                 $snippet = new Snippet();
                 $snippet->title = $this->request->getPost('title');
                 $snippet->body = $this->request->getPost('body');
+                $snippet->demo = $this->request->getPost('demo');
                 $snippet->tags = trim($this->request->getPost('tags'));
                 $snippet->save();
                 return $this->response->redirect('snippets/' . $snippet->num);
@@ -37,9 +38,18 @@ class SnippetsController extends ControllerBase {
     }
 
     public function viewAction($id){
-//        die('Id: ' . $id);
-
         $snippet = Snippet::findFirst([['num' => (int) $id]]);
+        if($snippet->created['user']){
+            $author = User::findFirst(['_id' => new MongoId($snippet->created['user'])]);
+            if($author){
+                $author = $author->toArray();
+                unset($author['password']);
+                unset($author['created']);
+                unset($author['email']);
+                $author['_id'] = $author['_id']->{'$id'};
+                $snippet->created['user'] = $author;
+            }
+        }
 
         $this->view->setVar('snippet', $snippet);
 
@@ -54,6 +64,7 @@ class SnippetsController extends ControllerBase {
         } elseif($request->isPost() === true){
             $snippet->title = $request->getPost('title');
             $snippet->body = $request->getPost('body');
+            $snippet->demo = $this->request->getPost('demo');
             $snippet->tags = trim($request->getPost('tags'));
             $snippet->save();
             return $this->response->redirect('snippets/' . $snippet->num);

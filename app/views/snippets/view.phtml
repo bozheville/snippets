@@ -4,7 +4,12 @@
             <i class="mdi-editor-mode-edit"></i><div class="ripple-wrapper"></div>
         </a>
         <h1><?=$snippet->title;?></h1>
+        <div class="author">
+            <?=$snippet->created['user']['name'];?>
+            <time local="<?=$snippet->created['time'];?>"></time>
+        </div>
         <div><pre><?=$snippet->body;?></pre></div>
+        <div>View demo: <a href="<?= $snippet->demo; ?>"><?=$snippet->demo;?></a></div>
         <div>
             <?foreach($snippet->tags as $tag_lnk => $tag):?>
                 <a href="/snippets/tag/<?= $tag_lnk; ?>"><?=$tag;?></a>
